@@ -17,4 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('importe','App/Http/Controllers/ImporteController@index');
+Route::get('importe','App\Http\Controllers\ImporteController@index');
+Route::post('App/Http/Models/importe','App\Http\Controllers\ImporteController@store');

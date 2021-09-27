@@ -247,15 +247,29 @@ export default {
         ).toFixed(2);
       }
     },
+    guardar(){
+      const params = {
+        id: 2,
+        contrato: this.importe.contrato,
+        iva: this.importe.iva,
+        importe: this.importe.importe,
+        anticipo: this.importe.anticipo,
+        cincoMillar: this.importe.cincoMillar,
+        dosMillar: this.importe.dosMillar,
+      };
+      this.$axios.post("App/Http/Models/importe", params).then((response) => {
+        alert(params);
+      });
+    },
     cargar() {
       this.$axios.get("importe").then((response) => {
-        this.importe.contrato = response.contrato;
-        this.importe.iva = response.iva;
-        this.importe.importe = response.importe;
-        this.importe.anticipo = response.anticipo;
-        this.importe.enrogacion = response.enrogacion;
-        this.importe.cincoMillar = response.cincoMillar;
-        this.importe.dosMillar = response.dosMillar;
+        this.importe.contrato = response.data[0].contrato;
+        this.importe.iva = response.data[0].iva;
+        this.importe.importe = response.data[0].importe;
+        this.importe.anticipo = response.data[0].anticipo;
+        this.importe.enrogacion = response.data[0].enrogacion;
+        this.importe.cincoMillar = response.data[0].cincoMillar;
+        this.importe.dosMillar = response.data[0].dosMillar;
       });
     },
   },

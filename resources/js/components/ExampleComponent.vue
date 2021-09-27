@@ -210,6 +210,9 @@ export default {
           2
         );
       }
+      else {
+        alert("Porcentaje fuera de rango (0 - 100");
+      }
     },
     async calcularImporteIva() {
       this.importe.importe = (
@@ -238,6 +241,8 @@ export default {
         this.importe.cincoMillar = (
           this.importe.contrato * this.cincoMillar
         ).toFixed(2);
+      }else {
+        alert("Porcentaje fuera de rango (0.001 - 10.0001");
       }
     },
     async calcular2Millar() {
@@ -245,6 +250,9 @@ export default {
         this.importe.dosMillar = (
           this.importe.contrato * this.dosMillar
         ).toFixed(2);
+      }
+      else {
+        alert("Porcentaje fuera de rango (0.001 - 10.0001");
       }
     },
     guardar() {

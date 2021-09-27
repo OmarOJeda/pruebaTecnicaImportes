@@ -249,8 +249,8 @@ export default {
     },
     cargar() {
       this.$axios.get("importe").then((response) => {
-        this.importe = response.data;
-        alert(this.importe.contrato);
+        this.importe = response;
+        Debug.log(response);
       });
     },
   },

@@ -16,6 +16,7 @@ class ImporteController extends Controller
 
     public function store(Request $request)
     {
+        Console.log($request);
         $importe = new Importe;
         $importe->contrato =  request('contrato');
         $importe->iva =  request('iva');
@@ -43,6 +44,6 @@ class ImporteController extends Controller
 
     public function destroy($id)
     {
-        //
+        $id->delete();
     }
 }

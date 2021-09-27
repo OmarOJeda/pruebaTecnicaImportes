@@ -191,7 +191,7 @@ export default {
         anticipo: "0",
         enrogacion: "0",
         cincoMillar: "0",
-        dosMillar: "0"
+        dosMillar: "0",
       },
       status: "not_accepted",
       iva: "16",
@@ -247,22 +247,27 @@ export default {
         ).toFixed(2);
       }
     },
-    guardar(){
+    guardar() {
       const params = {
-        id: 2,
         contrato: this.importe.contrato,
         iva: this.importe.iva,
         importe: this.importe.importe,
         anticipo: this.importe.anticipo,
+        enrogacion: this.importe.enrogacion,
         cincoMillar: this.importe.cincoMillar,
         dosMillar: this.importe.dosMillar,
       };
-      this.$axios.post("App/Http/Models/importe", params).then((response) => {
-        alert(params);
+      this.$axios.get("/mostrar").then((response) => {
+        if (response.data[0].id != null || response.data[0].id != "") {
+          this.$axios.delete("/eliminar" + response.data[0].id);
+        }
+        this.$axios.post("/guardar", params).then((response) => {
+          alert("Guardado");
+        });
       });
     },
     cargar() {
-      this.$axios.get("importe").then((response) => {
+      this.$axios.get("/mostrar").then((response) => {
         this.importe.contrato = response.data[0].contrato;
         this.importe.iva = response.data[0].iva;
         this.importe.importe = response.data[0].importe;

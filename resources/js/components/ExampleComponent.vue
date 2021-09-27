@@ -249,8 +249,13 @@ export default {
     },
     cargar() {
       this.$axios.get("importe").then((response) => {
-        this.importe = response;
-        Debug.log(response);
+        this.importe.contrato = response.contrato;
+        this.importe.iva = response.iva;
+        this.importe.importe = response.importe;
+        this.importe.anticipo = response.anticipo;
+        this.importe.enrogacion = response.enrogacion;
+        this.importe.cincoMillar = response.cincoMillar;
+        this.importe.dosMillar = response.dosMillar;
       });
     },
   },

@@ -35,7 +35,7 @@
               <b-col sm="2">
                 <input
                   v-model.number="iva"
-                  type="text"
+                  type="number"
                   class="form-control"
                   @change="
                     calcularIva();
@@ -209,8 +209,7 @@ export default {
         this.importe.iva = ((this.importe.contrato * this.iva) / 100).toFixed(
           2
         );
-      }
-      else {
+      } else {
         alert("Porcentaje fuera de rango (0 - 100");
       }
     },
@@ -241,7 +240,7 @@ export default {
         this.importe.cincoMillar = (
           this.importe.contrato * this.cincoMillar
         ).toFixed(2);
-      }else {
+      } else {
         alert("Porcentaje fuera de rango (0.001 - 10.0001");
       }
     },
@@ -250,8 +249,7 @@ export default {
         this.importe.dosMillar = (
           this.importe.contrato * this.dosMillar
         ).toFixed(2);
-      }
-      else {
+      } else {
         alert("Porcentaje fuera de rango (0.001 - 10.0001");
       }
     },

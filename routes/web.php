@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ImporteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mostrar','App\Http\Controllers\ImporteController@index');
+Route::resource('/importes',ImporteController::class);
 
-Route::post('/guardar','App\Http\Controllers\ImporteController@store');
-
-Route::delete('/eliminar','App\Http\Controllers\ImporteController@destroy');
+//Route::get('/mostrar','App\Http\Controllers\ImporteController@index');
+//Route::post('/guardar','App\Http\Controllers\ImporteController@store');
+//Route::delete('/eliminar','App\Http\Controllers\ImporteController@destroy');

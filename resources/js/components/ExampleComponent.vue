@@ -198,6 +198,7 @@ export default {
       anticipoDefault: "30",
       dosMillar: "0.002",
       cincoMillar: "0.005",
+      id: 0,
     };
   },
   mounted() {
@@ -253,7 +254,7 @@ export default {
         alert("Porcentaje fuera de rango (0.001 - 10.0001");
       }
     },
-    guardar() {
+    async guardar() {
       const params = {
         contrato: this.importe.contrato,
         iva: this.importe.iva,
@@ -263,24 +264,36 @@ export default {
         cincoMillar: this.importe.cincoMillar,
         dosMillar: this.importe.dosMillar,
       };
-      this.$axios.get("/mostrar").then((response) => {
-        if (response.data[0].id != null || response.data[0].id != "") {
-          this.$axios.delete("/eliminar" + response.data[0].id);
+      this.$axios.get("/importes").then((response) => {
+        if (response.data != "") {
+          this.id = response.data[0].id;
+          alert("Entro");
+          this.$axios.delete("/importes/" + this.id).then((response) => {
+            this.$axios.post("/importes" + params).then((response) => {
+              alert("Guardado");
+            });
+          });
+        } else {
+          alert("No entro");
+          this.$axios.post("/importes" + params).then((response) => {
+            alert("Guardado");
+          });
         }
-        this.$axios.post("/guardar", params).then((response) => {
-          alert("Guardado");
-        });
       });
     },
-    cargar() {
-      this.$axios.get("/mostrar").then((response) => {
-        this.importe.contrato = response.data[0].contrato;
-        this.importe.iva = response.data[0].iva;
-        this.importe.importe = response.data[0].importe;
-        this.importe.anticipo = response.data[0].anticipo;
-        this.importe.enrogacion = response.data[0].enrogacion;
-        this.importe.cincoMillar = response.data[0].cincoMillar;
-        this.importe.dosMillar = response.data[0].dosMillar;
+    async cargar() {
+      this.$axios.get("/importes").then((response) => {
+        if (response.data == "") {
+          alert("No existen datos");
+        } else {
+          this.importe.contrato = response.data[0].contrato;
+          this.importe.iva = response.data[0].iva;
+          this.importe.importe = response.data[0].importe;
+          this.importe.anticipo = response.data[0].anticipo;
+          this.importe.enrogacion = response.data[0].enrogacion;
+          this.importe.cincoMillar = response.data[0].cincoMillar;
+          this.importe.dosMillar = response.data[0].dosMillar;
+        }
       });
     },
   },

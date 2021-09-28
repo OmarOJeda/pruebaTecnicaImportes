@@ -185,6 +185,7 @@ export default {
   data() {
     return {
       importe: {
+        id:1,
         contrato: "0",
         iva: "0",
         importe: "0",

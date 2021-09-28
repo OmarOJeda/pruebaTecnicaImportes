@@ -17,6 +17,7 @@ class ImporteController extends Controller
     public function store(Request $request)
     {
         $importe = new Importe;
+        $importe->id = request('id');
         $importe->contrato =  request('contrato');
         $importe->iva =  request('iva');
         $importe->importe =  request('importe');

@@ -255,27 +255,16 @@ export default {
       }
     },
      guardar() {
-      const params = {
-        contrato: this.importe.contrato,
-        iva: this.importe.iva,
-        importe: this.importe.importe,
-        anticipo: this.importe.anticipo,
-        enrogacion: this.importe.enrogacion,
-        cincoMillar: this.importe.cincoMillar,
-        dosMillar: this.importe.dosMillar,
-      };
       this.$axios.get("/importes").then((response) => {
         if (response.data != "") {
           this.id = response.data[0].id;
-          alert("Entro");
           this.$axios.delete("/importes/" + this.id).then((response) => {
-            this.$axios.post("/importes", params).then((response) => {
+            this.$axios.post("/importes", this.importe).then((response) => {
               alert("Guardado");
             });
           });
         } else {
-          alert("No entro");
-           this.$axios.post("/importes", params).then((response) => {
+           this.$axios.post("/importes", this.importe).then((response) => {
             alert("Guardado");
           });
         }

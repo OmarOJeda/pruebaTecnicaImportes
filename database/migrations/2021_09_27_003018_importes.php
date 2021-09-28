@@ -22,6 +22,7 @@ class Importes extends Migration
             $table->string('enrogacion');
             $table->string('cincoMillar');
             $table->string('dosMillar');
+            $table->timestamps();
         });
     }
 

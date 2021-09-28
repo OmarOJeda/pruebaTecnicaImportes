@@ -17,7 +17,13 @@ class ImporteController extends Controller
     public function store(Request $request)
     {
         $importe = new Importe;
-        $importe->create($request->all());
+        $importe->contrato =  request('contrato');
+        $importe->iva =  request('iva');
+        $importe->importe =  request('importe');
+        $importe->anticipo =  request('anticipo');
+        $importe->enrogacion =  request('enrogacion');
+        $importe->cincoMillar =  request('cincoMillar');
+        $importe->dosMillar =  request('dosMillar');
         $importe->save();
         return $importe;
     }
@@ -29,9 +35,9 @@ class ImporteController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Importe $importe)
     {
-        //
+        $importe->update($request->all());
     }
 
 

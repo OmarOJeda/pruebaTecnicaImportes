@@ -20,6 +20,3 @@ Route::get('/', function () {
 
 Route::resource('/importes',ImporteController::class);
 
-//Route::get('/mostrar','App\Http\Controllers\ImporteController@index');
-//Route::post('/guardar','App\Http\Controllers\ImporteController@store');
-//Route::delete('/eliminar','App\Http\Controllers\ImporteController@destroy');

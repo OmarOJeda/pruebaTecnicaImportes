@@ -254,7 +254,7 @@ export default {
         alert("Porcentaje fuera de rango (0.001 - 10.0001");
       }
     },
-    async guardar() {
+     guardar() {
       const params = {
         contrato: this.importe.contrato,
         iva: this.importe.iva,
@@ -269,19 +269,19 @@ export default {
           this.id = response.data[0].id;
           alert("Entro");
           this.$axios.delete("/importes/" + this.id).then((response) => {
-            this.$axios.post("/importes" + params).then((response) => {
+            this.$axios.post("/importes", params).then((response) => {
               alert("Guardado");
             });
           });
         } else {
           alert("No entro");
-          this.$axios.post("/importes" + params).then((response) => {
+           this.$axios.post("/importes", params).then((response) => {
             alert("Guardado");
           });
         }
       });
     },
-    async cargar() {
+     cargar() {
       this.$axios.get("/importes").then((response) => {
         if (response.data == "") {
           alert("No existen datos");
